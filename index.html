@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Эквалайзер потокового аудио | Лабораторная работа №3</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="icon" type="image/png" href="favicon.png"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<script type="text/javascript" charset="utf-8" src="libs/FFTNR.js"></script>
+	<script type="text/javascript" charset="utf-8" src="libs/CanvasEqualizer.umd.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="libs/Analyzer.js"></script>
+	<script type="text/javascript" charset="utf-8" src="libs/AnalyzerWL.js"></script>
+	<script type="text/javascript" charset="utf-8" src="libs/SoundParticles.js"></script>
+	<script type="text/javascript" charset="utf-8" src="libs/Shaders.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+</head>
+<body>
+	<div style="margin: 16px 0px;"><div style="display:inline-block; background-color: #303030; padding: 8px;">
+	<input type="radio" value="0" checked name="chkSource" id="chkSource0" /> <label for="txtFile" onclick="return selectSource(0);">Загрузите файл:</label> <input type="file" id="txtFile" /><br/>или<br />
+	<input type="radio" value="1" name="chkSource" id="chkSource1" /> <label for="txtURL" onclick="return selectSource(1);">Введите адрес потокового аудио:</label> <input type="url" id="txtURL" /><br/>
+	<div class="SEP"></div>
+	<button id="btnPlay">Играть</button>
+	<button id="btnStop">Остановить</button>|
+	<select id="cbLoadType">
+		<option value="0" selected="selected">Воспроизвести файл через потоковую передачу</option>
+		<option value="1">Загрузить весь файл в память перед воспроизведением</option>
+	</select>
+	<div class="SEP"></div>
+	<button id="btnProcess">Обработать файл в оффлайн и скачать обработанную версию</button> <img class="HID" id="imgLoader" alt="Обработка..." src="img/loader.gif" />
+	<div class="SEP"></div>
+	<label for="cbFilterLength">Длина фильтра:</label><select id="cbFilterLength">
+		<option value="64">64</option>
+		<option value="128">128</option>
+		<option value="256">256</option>
+		<option value="512">512</option>
+		<option value="1024">1024</option>
+		<option value="2048" selected="selected">2048</option>
+		<option value="4096">4096</option>
+		<option value="8192">8192</option>
+	</select><label for="cbAnalyzer">Анализатор:</label><select id="cbAnalyzer">
+		<option value="none" selected="selected">Нет</option>
+		<option value="soundParticles">Звуковые частицы</option>
+		<option value="fft">Анализатор частоты</option>
+		<option value="wl">Волновой анализатор Хаара</option>
+	</select>
+	<div class="SEP"></div>
+	<button id="btnReset">Сбросить фильтры</button></div>
+	<div id="analyzerPlaceholder" style="vertical-align: top; display: inline-block; margin-left: 16px;"></div></div>
+	<div id="equalizerPlaceholder" style="width:100%;height:calc(100vh - 100px);"></div>
+	<script type="text/javascript">
+		main();
+	</script>
+</body>
+</html>

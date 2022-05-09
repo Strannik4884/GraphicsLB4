@@ -191,8 +191,18 @@ function handleError(e) {
     enableButtons(true);
     // освободить все созданные URL
     freeObjURLs();
-    alert(e);
+    notyAlert(e, 'error');
     return true;
+}
+
+// функция вывода ошибки на экран
+function notyAlert(e, type) {
+    new Noty({
+        theme: 'metroui',
+        timeout: 5000,
+        type: type,
+        text: e,
+    }).show();
 }
 
 // обновление источников данных
@@ -362,17 +372,17 @@ function prepareStreamingAndPlay() {
 function play() {
     if (chkSource[0].checked) {
         if ($("txtFile").files.length === 0) {
-            alert("Пожалуйста, выберите файл для воспроизведения!");
+            notyAlert("Пожалуйста, выберите файл для воспроизведения!", 'warning');
             return true;
         }
     } else if (chkSource[1].checked) {
         if ($("txtURL").value.length === 0) {
-            alert("Пожалуйста, введите адрес файла для воспроизведения!");
+            notyAlert("Пожалуйста, введите адрес файла для воспроизведения!", 'warning');
             return true;
         }
     }
     if (!window.AudioContext && !window.webkitAudioContext) {
-        alert("Ваш браузер не поддерживает Web Audio API!");
+        notyAlert("Ваш браузер не поддерживает Web Audio API!", 'error');
         return true;
     }
     stop();
@@ -392,19 +402,19 @@ function play() {
 function processAndDownload() {
     if (chkSource[0].checked) {
         if ($("txtFile").files.length === 0) {
-            alert("Выберите файл для обработки!");
+            notyAlert("Выберите файл для обработки!", 'warning');
             return true;
         }
     } else if (chkSource[1].checked) {
-        alert("Извините, но данный вид аудио-потоков недоступен!");
+        notyAlert("Извините, но невозможно обработать аудио-поток оффлайн", 'error');
         return true;
     }
     if (!window.AudioContext && !window.webkitAudioContext) {
-        alert("Ваш браузер не поддерживает Web Audio API!");
+        notyAlert("Ваш браузер не поддерживает Web Audio API!", 'error');
         return true;
     }
     if (!window.Worker) {
-        alert("Ваш браузер не поддерживает Web Audio API!");
+        notyAlert("Ваш браузер не поддерживает Web Audio API!", 'error');
         return true;
     }
     stop();

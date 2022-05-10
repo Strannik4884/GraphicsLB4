@@ -12,3 +12,5 @@
 После чего проект будет доступен по следующему адресу: http://localhost:8080.
 
 При наличии Docker Compose достаточно выполнить команду *docker-compose up -d* в корне проекта для создания и запуска контейнера.
+
+Пример потокового аудио: [рок-станция](https://us4.internet-radio.com/proxy/douglassinclair?mp=/stream;)

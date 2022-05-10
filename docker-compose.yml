@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  equalizer:
+    build: .
+    container_name: equalizer
+    restart: always
+    ports:
+      - 8080:80

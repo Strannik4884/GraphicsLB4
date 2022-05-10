@@ -363,7 +363,9 @@ function prepareStreamingAndPlay() {
     sourceAudio.load();
     graphicEqualizer.audioContext = audioContext;
     updateConnections();
-    sourceAudio.play();
+    sourceAudio.play().catch(function(error) {
+        notyAlert('Ошибка воспроизведения аудио-потока!', 'error')
+    });
     $("btnStop").disabled = "";
     return true;
 }
